@@ -9,3 +9,9 @@ def home():
 @app.route('/about')
 def about():
     return 'About'
+
+@app.route("/qrcode")
+def qr_gen():
+
+
+    return "QR code"
