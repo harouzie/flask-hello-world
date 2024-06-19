@@ -1,6 +1,6 @@
 from flask import Flask, send_file
 import io
-
+import base64
 import qrcode
 
 app = Flask(__name__)
@@ -30,8 +30,10 @@ def qr_gen():
 
     # Rewind the BytesIO object to the beginning
     img_byte_arr.seek(0)
+    base64_data = base64.b64encode(img_byte_arr.read()).decode()
 
-    return send_file(img_byte_arr, mimetype='image/png')
+    return base64_data
+    # return send_file(img_byte_arr, mimetype='image/png')
 
 
 # if __name__ == '__main__':
