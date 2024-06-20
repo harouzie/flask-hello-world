@@ -39,32 +39,17 @@ def rickroll():
 
 @app.route("/qrcode", methods=['GET'])
 def qr_gen():
-    # Extract the required parameters
-    # name = request.form.get("name")
-    # id = request.form.get("id")
-    # meeting_id = request.form.get("meeting_id")
 
-    name = request.args.get("name")
     id = request.args.get("id")
-    meeting_id = request.args.get("meeting_id")
 
     # Validate the parameters
-    # if not all([name, id, meeting_id]):
-    #     return jsonify({"error": "Missing required parameters"}), 400
+    if not all([id]):
+        return jsonify({"error": "Missing required parameters"}), 400
 
-    # Create the QR code data
-    qr_data = {
-        "name": name,
-        # "id": id,
-        "meeting_id": "mid_01",
-        "command": "create_meeting"  # Replace with the actual command
-    }
-
-    # Encode the QR code data as JSON
-    json_data = json.dumps(qr_data)
+    emb_string = f"{id}"
 
     qr = qrcode.QRCode(version=1, box_size=10)
-    qr.add_data(json_data)
+    qr.add_data(emb_string)
     qr.make(fit=True)
     img = qr.make_image(fill_color="black", back_color="white")
 
