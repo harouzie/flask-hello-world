@@ -37,7 +37,7 @@ def rickroll():
     # return send_file(img_byte_arr, mimetype='image/png')
 
 
-@app.route("/qrcode", methods=['POST'])
+@app.route("/qrcode", methods=['GET'])
 def qr_gen():
     # Extract the required parameters
     # name = request.form.get("name")
